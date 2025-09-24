@@ -3,9 +3,10 @@ pragma solidity ^0.8.26;
 
 import "../src/Staking.sol";
 import "./MockErc20.sol";
+import "../lib/forge-std/src/Test.sol";
 
 // Standalone test that doesn't depend on forge-std
-contract StandaloneStakingTest {
+contract StandaloneStakingTest is Test {
     StakingRewards public staking;
     MockERC20 public stakingToken;
     MockERC20 public rewardToken;
@@ -64,7 +65,7 @@ contract StandaloneStakingTest {
 
     function testWithdrawals() external {
         // Bob withdraws
-        vm.prank(bob);
+        prank(bob);
         staking.withdraw(2e18);
 
         require(staking.balanceOf(bob) == 3e18, "Bob balance after withdraw incorrect");
@@ -145,17 +146,5 @@ contract StandaloneStakingTest {
         require(earned2 > earned1, "Earned rewards should increase over time");
     }
 
-    // Helper function to simulate VM functions
-    function vm() internal pure returns (Vm) {
-        return Vm(address(0x7109709ECfa91a80626fF3989D68f67F5b1DD12D));
-    }
-
     receive() external payable {}
-}
-
-interface Vm {
-    function prank(address) external;
-    function warp(uint256) external;
-    function deal(address, uint256) external;
-    function expectRevert(bytes calldata) external;
 }
