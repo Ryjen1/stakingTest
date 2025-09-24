@@ -2,7 +2,6 @@
 pragma solidity ^0.8.26;
 
 abstract contract StdCheats {
-    Vm private constant vm = Vm(address(uint160(uint256(keccak256("hevm cheat code")))));
     
     function prank(address msgSender) internal {
         vm.prank(msgSender);

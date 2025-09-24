@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
-import "./Vm.sol";
 import "./console.sol";
 import "./console2.sol";
 import "./StdAssertions.sol";
@@ -26,6 +25,5 @@ abstract contract Test is
     StdStorage,
     StdStyle,
     StdUtils,
-    stdToml,
-    Vm
+    stdToml
 {}
