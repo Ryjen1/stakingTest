@@ -9,15 +9,14 @@ contract StakingRewards is ERC20, Ownable {
     IERC20 public immutable rewardsToken;
     IERC20 public immutable stakingToken;
 
-    uint256 public duration; // Duration of rewards to be paid out
-    uint256 public finishAt; // Timestamp of when the rewards finish
-    uint256 public updatedAt; // Timestamp of when the reward variables were last updated
-    uint256 public rewardRate; // Reward to be paid out per second
-    uint256 public rewardPerTokenStored; // Sum of (reward rate * dt * 1e18 / total supply)
+    uint256 public duration; 
+    uint256 public finishAt; 
+    uint256 public updatedAt; 
+    uint256 public rewardRate; 
+    uint256 public rewardPerTokenStored; 
 
-    mapping(address => uint256) public userRewardPerTokenPaid; // User address => userRewardPerTokenPaid
-    mapping(address => uint256) public rewards; // User address => rewards to be claimed
-
+    mapping(address => uint256) public userRewardPerTokenPaid; 
+    mapping(address => uint256) public rewards; 
     uint256 private constant PRECISION = 1e18;
 
     event Staked(address indexed user, uint256 amount);
